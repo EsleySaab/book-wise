@@ -1,5 +1,5 @@
 const ExplorePage = () => {
-  return <h1>Hello Explore!</h1>;
+  return <h1 className="text-2xl">Hello Explore!</h1>;
 };
 
 export default ExplorePage;
