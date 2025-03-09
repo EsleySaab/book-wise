@@ -1,11 +1,10 @@
-import { Button } from "../_components/ui/button";
+import NavBar from "../_components/navbar";
 
 const ExplorePage = () => {
   return (
-    <>
-      <h1 className="text-2xl">Hello Explore!</h1>
-      <Button className="bg-gray-600">Avaliar</Button>
-    </>
+    <div className="grid h-full grid-cols-[1fr_5fr]">
+      <NavBar />
+    </div>
   );
 };
 

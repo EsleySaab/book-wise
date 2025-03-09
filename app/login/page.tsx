@@ -19,7 +19,7 @@ const LoginPage = async () => {
           src="/login.png"
           alt="Faça login"
           fill
-          className="object-cover"
+          className="rounded-lg object-cover"
         />
       </div>
       {/* Direita */}
