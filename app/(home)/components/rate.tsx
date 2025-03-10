@@ -13,7 +13,7 @@ const Rating = ({ value }: RatingProps) => {
       stars.push(
         <Star
           key={i}
-          className={`h-6 w-6 ${i <= value ? "text-purple-100" : "text-gray-300"}`}
+          className={`h-6 w-6 ${i <= value ? "fill-purple-100 text-purple-100" : "text-gray-400"}`}
         />,
       );
     }

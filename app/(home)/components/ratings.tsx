@@ -12,7 +12,15 @@ const Ratings = async () => {
     <>
       <div className="mb-5">
         {ratings.map((rating) => (
-          <RatingCard ratingValue={rating.rate} key={rating.id} />
+          <RatingCard
+            ratingValue={rating.rate}
+            key={rating.id}
+            bookImage={rating.book.cover_url}
+            alt={`Capa do livro ${rating.book.name}`}
+            authorName={rating.book.author}
+            bookName={rating.book.name}
+            bookSummary={rating.book.summary}
+          />
         ))}
       </div>
     </>
