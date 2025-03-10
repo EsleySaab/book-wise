@@ -3,6 +3,8 @@ import LoginButton from "./_components/login-button";
 import { SignInButton } from "@clerk/nextjs";
 import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
+import Link from "next/link";
+import { Button } from "../_components/ui/button";
 
 const LoginPage = async () => {
   const { userId } = await auth();
@@ -45,11 +47,22 @@ const LoginPage = async () => {
             />
           </SignInButton>
 
-          <LoginButton
-            text="Acessar como visitante"
-            image="/visitant.svg"
-            alt="Logo de Visitante"
-          />
+          <Button
+            className="flex items-center justify-start gap-4 bg-gray-600 p-7"
+            asChild
+          >
+            <Link href="/">
+              <Image
+                src="/visitant.svg"
+                alt="Logo visitante"
+                width={24}
+                height={24}
+              />
+              <p className="font-semibold text-gray-200">
+                Acessar como visitante
+              </p>
+            </Link>
+          </Button>
         </div>
       </div>
     </div>
