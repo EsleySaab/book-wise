@@ -1,10 +1,14 @@
+import { auth } from "@clerk/nextjs/server";
 import NavBar from "../_components/navbar";
 import { ScrollArea } from "../_components/ui/scroll-area";
 import PopularBooks from "./components/popular-books";
 import Ratings from "./components/ratings";
 import Image from "next/image";
+import UserLastRead from "./components/user-last-read";
 
 const Home = async () => {
+  const { userId } = auth();
+
   return (
     <div className="grid h-screen grid-cols-[1fr_3fr_2fr]">
       <NavBar />
@@ -14,6 +18,7 @@ const Home = async () => {
           <Image src="/home-2.svg" alt="Início" width={32} height={32} />
           <h2 className="text-2xl font-semibold text-gray-100">Início</h2>
         </div>
+        {userId && <UserLastRead />}
         <h4 className="mb-4 text-gray-200">Avaliações mais recentes</h4>
 
         <ScrollArea className="h-full">

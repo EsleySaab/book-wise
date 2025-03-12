@@ -4,16 +4,19 @@ import { Star } from "lucide-react";
 
 interface RatingProps {
   value: number;
+  size?: number;
 }
 
-const Rating = ({ value }: RatingProps) => {
+const Rate = ({ value, size = 6 }: RatingProps) => {
   const renderStars = () => {
     const stars = [];
+    const clampedValue = Math.min(value, 5);
+
     for (let i = 1; i <= 5; i++) {
       stars.push(
         <Star
           key={i}
-          className={`h-6 w-6 ${i <= value ? "fill-purple-100 text-purple-100" : "text-gray-400"}`}
+          className={`h-${size} w-${size} ${i <= clampedValue ? "fill-purple-100 text-purple-100" : "text-gray-400"}`}
         />,
       );
     }
@@ -23,4 +26,4 @@ const Rating = ({ value }: RatingProps) => {
   return <div className="flex space-x-1">{renderStars()}</div>;
 };
 
-export default Rating;
+export default Rate;
