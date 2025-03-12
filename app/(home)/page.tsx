@@ -1,5 +1,6 @@
 import NavBar from "../_components/navbar";
 import { ScrollArea } from "../_components/ui/scroll-area";
+import PopularBooks from "./components/popular-books";
 import Ratings from "./components/ratings";
 import Image from "next/image";
 
@@ -19,6 +20,11 @@ const Home = async () => {
           <Ratings />
         </ScrollArea>
       </div>
+      <ScrollArea className="h-full">
+        <div className="ml-20 mt-36 flex md:mb-4">
+          <PopularBooks />
+        </div>
+      </ScrollArea>
     </div>
   );
 };

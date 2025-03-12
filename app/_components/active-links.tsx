@@ -19,7 +19,9 @@ const ActiveLink = ({ href, icon, alt, children }: ActiveLinkProps) => {
     <Link
       href={href}
       className={`flex items-center gap-3 px-4 text-gray-400 transition-colors ${
-        isActive ? "border-l-4 border-white text-sm font-bold text-white" : ""
+        isActive
+          ? "border-l-4 border-green-100 text-sm font-bold text-white"
+          : ""
       }`}
     >
       <Image
