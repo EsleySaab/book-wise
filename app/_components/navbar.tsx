@@ -32,6 +32,10 @@ const NavBar = () => {
           <ActiveLink href="/explore" icon="/binoculars.svg" alt="Explorar">
             Explorar
           </ActiveLink>
+
+          <ActiveLink href="/profile" icon="/profile.svg" alt="Perfil">
+            Perfil
+          </ActiveLink>
         </div>
       </div>
       <div className="mb-6 px-4">
