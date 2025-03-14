@@ -22,7 +22,7 @@ const ExploreHeader = async () => {
           />
           <h2 className="text-2xl font-bold text-gray-100">Explorar</h2>
         </div>
-        <div className="relative w-full max-w-md rounded-lg border border-gray-500">
+        <div className="relative w-full max-w-md rounded-lg border border-gray-500 focus-within:border-green-200">
           <input
             type="text"
             placeholder="Buscar livro ou autor"

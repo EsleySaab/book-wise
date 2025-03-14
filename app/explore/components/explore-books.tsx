@@ -16,7 +16,10 @@ const ExploreBooks = async () => {
         const rating = book.ratings[0];
         const ratingValue = rating ? rating.rate : 0;
         return (
-          <Card key={book.id} className="rounded-lg bg-gray-700 pt-4">
+          <Card
+            key={book.id}
+            className="cursor-pointer rounded-lg border border-gray-700 bg-gray-700 pt-4 transition-colors duration-300 ease-in-out hover:border-purple-100 hover:bg-gray-600"
+          >
             <CardContent className="flex gap-4">
               <Image
                 src={book.cover_url}

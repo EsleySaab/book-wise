@@ -7,8 +7,8 @@ interface CategoryButtonProps {
 const CategoryButton = async ({ name }: CategoryButtonProps) => {
   return (
     <>
-      <Button className="rounded-full border border-purple-100">
-        <p className="text-purple-100">{name}</p>
+      <Button className="rounded-full border border-purple-100 hover:border-purple-100 hover:bg-purple-200">
+        <p className="text-purple-100 hover:text-gray-100">{name}</p>
       </Button>
     </>
   );
