@@ -1,4 +1,6 @@
 import NavBar from "../_components/navbar";
+import { ScrollArea } from "../_components/ui/scroll-area";
+import ExploreBooks from "./components/explore-books";
 import ExploreHeader from "./components/explore-header";
 
 const ExplorePage = () => {
@@ -6,9 +8,12 @@ const ExplorePage = () => {
     <div className="mr-24 grid h-full grid-cols-[1fr_5fr]">
       <NavBar />
 
-      <div className="ml-24 mt-16">
-        <ExploreHeader />
-      </div>
+      <ScrollArea>
+        <div className="mb-5 ml-24 mt-16">
+          <ExploreHeader />
+          <ExploreBooks />
+        </div>
+      </ScrollArea>
     </div>
   );
 };

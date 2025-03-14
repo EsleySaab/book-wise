@@ -4,10 +4,14 @@ import Image from "next/image";
 import CategoryButton from "./category-button";
 
 const ExploreHeader = async () => {
-  const categories = await db.category.findMany({});
+  const categories = await db.category.findMany({
+    include: {
+      books: true,
+    },
+  });
 
   return (
-    <div className="flex flex-col space-y-12">
+    <div className="mb-12 flex flex-col space-y-12">
       <div className="mb- flex items-center justify-between text-center">
         <div className="flex items-center gap-3">
           <Image
@@ -32,7 +36,7 @@ const ExploreHeader = async () => {
         </div>
       </div>
 
-      <div className="flex flex-wrap gap-2">
+      <div className="flex h-full w-full flex-wrap gap-2">
         {categories.map((category) => (
           <CategoryButton name={category.name} key={category.id} />
         ))}
