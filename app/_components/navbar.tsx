@@ -33,9 +33,11 @@ const NavBar = () => {
             Explorar
           </ActiveLink>
 
-          <ActiveLink href="/profile" icon="/profile.svg" alt="Perfil">
-            Perfil
-          </ActiveLink>
+          {userId && (
+            <ActiveLink href="/profile" icon="/profile.svg" alt="Perfil">
+              Perfil
+            </ActiveLink>
+          )}
         </div>
       </div>
       <div className="mb-6 px-4">

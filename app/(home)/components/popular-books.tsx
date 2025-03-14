@@ -13,8 +13,6 @@ const PopularBooks = async () => {
     take: 4,
   });
 
-  console.log(books);
-
   return (
     <div className="w-[324px]">
       <div className="mb-4 flex items-center justify-between">
