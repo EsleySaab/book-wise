@@ -5,6 +5,7 @@ const ExploreBooks = async () => {
   const books = await db.book.findMany({
     include: {
       ratings: true,
+      categories: { include: { category: true } },
     },
     orderBy: { name: "asc" },
   });
@@ -13,6 +14,9 @@ const ExploreBooks = async () => {
       {books.map((book) => {
         const rating = book.ratings[0];
         const ratingValue = rating ? rating.rate : 0;
+        const bookCategories = book.categories.map(
+          (category) => category.category.name,
+        );
         return (
           <ExploreBookCard
             key={book.id}
@@ -21,6 +25,8 @@ const ExploreBooks = async () => {
             alt={`Imagem do livro ${book.name}}`}
             bookAuthor={book.author}
             bookRating={ratingValue}
+            bookCategories={bookCategories}
+            bookPages={book.total_pages}
           />
         );
       })}
