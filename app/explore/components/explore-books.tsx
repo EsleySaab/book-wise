@@ -1,7 +1,5 @@
-import Rate from "@/app/(home)/components/rate";
-import { Card, CardContent } from "@/app/_components/ui/card";
 import { db } from "@/app/_lib/prisma";
-import Image from "next/image";
+import ExploreBookCard from "./explore-book-card";
 
 const ExploreBooks = async () => {
   const books = await db.book.findMany({
@@ -16,30 +14,14 @@ const ExploreBooks = async () => {
         const rating = book.ratings[0];
         const ratingValue = rating ? rating.rate : 0;
         return (
-          <Card
+          <ExploreBookCard
             key={book.id}
-            className="cursor-pointer rounded-lg border border-gray-700 bg-gray-700 pt-4 transition-colors duration-300 ease-in-out hover:border-purple-100 hover:bg-gray-600"
-          >
-            <CardContent className="flex gap-4">
-              <Image
-                src={book.cover_url}
-                alt={`Imagem do livro ${book.name}`}
-                width={108}
-                height={152}
-                className="rounded-md object-cover"
-              />
-
-              <div className="flex flex-col">
-                <h2 className="line-clamp-2 text-sm font-bold text-gray-100">
-                  {book.name}
-                </h2>
-                <p className="text-xs text-gray-400">{book.author}</p>
-                <div className="mt-auto">
-                  <Rate size={5} value={ratingValue} />
-                </div>
-              </div>
-            </CardContent>
-          </Card>
+            bookName={book.name}
+            coverUrl={book.cover_url}
+            alt={`Imagem do livro ${book.name}}`}
+            bookAuthor={book.author}
+            bookRating={ratingValue}
+          />
         );
       })}
     </div>
