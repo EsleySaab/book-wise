@@ -13,6 +13,8 @@ import Image from "next/image";
 import DialogBookCard from "./dialog-book-card";
 import DialogRatings from "./dialog-ratings";
 import { ScrollArea } from "@/app/_components/ui/scroll-area";
+import { useUser } from "@clerk/nextjs";
+import { useRouter } from "next/navigation";
 
 interface ExploreBookCardProps {
   coverUrl: string;
@@ -39,6 +41,17 @@ const ExploreBookDialog = ({
   bookPages,
   ratings,
 }: ExploreBookCardProps) => {
+  const { user } = useUser();
+  const router = useRouter();
+
+  const handleReviewClick = () => {
+    if (!user) {
+      router.push("/login");
+    } else {
+      console.log("Escreva sua avaliação!");
+    }
+  };
+
   return (
     <Dialog>
       <DialogTrigger>
@@ -82,6 +95,7 @@ const ExploreBookDialog = ({
           <Button
             type="button"
             className="text-sm font-semibold text-purple-100"
+            onClick={handleReviewClick}
           >
             Avaliar
           </Button>
@@ -90,7 +104,11 @@ const ExploreBookDialog = ({
         <ScrollArea className="h-screen">
           <div className="space-y-4">
             {ratings.map((rating) => (
-              <DialogRatings key={rating.id} ratingValue={rating.rate} />
+              <DialogRatings
+                key={rating.id}
+                ratingValue={rating.rate}
+                ratingDescription={rating.description}
+              />
             ))}
           </div>
         </ScrollArea>

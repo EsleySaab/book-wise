@@ -2,6 +2,7 @@ import { Avatar, AvatarImage } from "@/app/_components/ui/avatar";
 import { Card, CardContent, CardHeader } from "@/app/_components/ui/card";
 import {
   getRandomAvatar,
+  getRandomDate,
   getRandomName,
 } from "@/app/_utils/get-random-informations";
 import Rate from "./rate";
@@ -34,7 +35,7 @@ const RatingCard = ({
             </Avatar>
             <div className="flex flex-col">
               <p className="font-semibold">{getRandomName()}</p>
-              <p className="text-sm text-gray-400">Hoje</p>
+              <p className="text-sm text-gray-400">{getRandomDate()}</p>
             </div>
           </div>
           <div className="flex items-center">

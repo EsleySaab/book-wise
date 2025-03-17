@@ -3,14 +3,19 @@ import { Avatar, AvatarImage } from "@/app/_components/ui/avatar";
 import { Card, CardContent, CardHeader } from "@/app/_components/ui/card";
 import {
   getRandomAvatar,
+  getRandomDate,
   getRandomName,
 } from "@/app/_utils/get-random-informations";
 
 interface DialogRatingsProps {
   ratingValue: number;
+  ratingDescription: string;
 }
 
-const DialogRatings = ({ ratingValue }: DialogRatingsProps) => {
+const DialogRatings = ({
+  ratingValue,
+  ratingDescription,
+}: DialogRatingsProps) => {
   return (
     <Card className="bg-gray-700">
       <CardContent>
@@ -22,7 +27,7 @@ const DialogRatings = ({ ratingValue }: DialogRatingsProps) => {
               </Avatar>
               <div className="flex flex-col">
                 <p className="font-semibold">{getRandomName()}</p>
-                <p className="text-sm text-gray-400">Hoje</p>
+                <p className="text-sm text-gray-400">{getRandomDate()}</p>
               </div>
             </div>
             <div className="flex items-center">
@@ -30,6 +35,7 @@ const DialogRatings = ({ ratingValue }: DialogRatingsProps) => {
             </div>
           </div>
         </CardHeader>
+        <p className="text-sm text-gray-300">{ratingDescription}</p>
       </CardContent>
     </Card>
   );
