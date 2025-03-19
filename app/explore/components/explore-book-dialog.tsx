@@ -17,6 +17,7 @@ import { ScrollArea } from "@/app/_components/ui/scroll-area";
 import { useUser } from "@clerk/nextjs";
 import { SignInButton } from "@clerk/nextjs";
 import { useState } from "react";
+import { createRating } from "@/app/_actions/create-rating";
 
 interface ExploreBookCardProps {
   coverUrl: string;
@@ -31,6 +32,7 @@ interface ExploreBookCardProps {
     rate: number;
     description: string;
   }[];
+  bookId: string;
 }
 
 const ExploreBookDialog = ({
@@ -42,15 +44,37 @@ const ExploreBookDialog = ({
   bookCategories,
   bookPages,
   ratings,
+  bookId,
 }: ExploreBookCardProps) => {
   const { user } = useUser();
   const [isOpen, setIsOpen] = useState(false);
+  const [isReviewing, setIsReviewing] = useState(false);
+  const [rating, setRating] = useState(0);
+  const [description, setDescription] = useState("");
 
   const handleReviewClick = () => {
     if (!user) {
       setIsOpen(true);
     } else {
-      console.log("Escreva sua avaliação!");
+      setIsReviewing(true);
+    }
+  };
+
+  const handleSubmitReview = async () => {
+    if (!rating || !description.trim()) return;
+
+    try {
+      await createRating({
+        book_id: bookId,
+        rating,
+        description,
+      });
+
+      setRating(0);
+      setDescription("");
+      setIsReviewing(false);
+    } catch (error) {
+      console.error(error);
     }
   };
 
@@ -135,6 +159,39 @@ const ExploreBookDialog = ({
             </DialogContent>
           </Dialog>
         </div>
+
+        {isReviewing && (
+          <Card className="mt-4 border border-gray-700 bg-gray-700 p-4">
+            <div className="flex items-center justify-between">
+              <p className="text-sm font-semibold text-gray-100">
+                Sua avaliação
+              </p>
+              <Rate size={5} value={rating} onChange={setRating} />
+            </div>
+            <textarea
+              className="mt-2 w-full rounded-md border border-gray-600 bg-gray-800 p-2 text-sm text-gray-200"
+              placeholder="Escreva sua avaliação..."
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+            />
+            <div className="mt-2 flex justify-end gap-2">
+              <Button
+                type="button"
+                className="text-sm font-semibold text-gray-400"
+                onClick={() => setIsReviewing(false)}
+              >
+                Cancelar
+              </Button>
+              <Button
+                type="button"
+                className="text-sm font-semibold text-purple-100"
+                onClick={handleSubmitReview}
+              >
+                Enviar
+              </Button>
+            </div>
+          </Card>
+        )}
 
         <ScrollArea className="h-screen">
           <div className="space-y-4">

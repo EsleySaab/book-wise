@@ -32,6 +32,7 @@ const ExploreBooks = async () => {
             bookCategories={bookCategories}
             bookPages={book.total_pages}
             ratings={allRatings}
+            bookId={book.id}
           />
         );
       })}

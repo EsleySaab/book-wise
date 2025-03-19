@@ -4,10 +4,17 @@ import { Star } from "lucide-react";
 
 interface RatingProps {
   value: number;
+  onChange?: (value: number) => void;
   size?: number;
 }
 
-const Rate = ({ value, size = 6 }: RatingProps) => {
+const Rate = ({ value, onChange, size = 6 }: RatingProps) => {
+  const handleClick = (newValue: number) => {
+    if (onChange) {
+      onChange(newValue);
+    }
+  };
+
   const renderStars = () => {
     const stars = [];
     const clampedValue = Math.min(value, 5);
@@ -16,7 +23,12 @@ const Rate = ({ value, size = 6 }: RatingProps) => {
       stars.push(
         <Star
           key={i}
-          className={`h-${size} w-${size} ${i <= clampedValue ? "fill-purple-100 text-purple-100" : "text-gray-400"}`}
+          onClick={() => handleClick(i)}
+          className={`h-${size} w-${size} cursor-pointer transition-colors duration-200 ${
+            i <= clampedValue
+              ? "fill-purple-100 text-purple-100"
+              : "text-gray-400 hover:text-purple-200"
+          }`}
         />,
       );
     }
