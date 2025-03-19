@@ -1,5 +1,5 @@
 import Image from "next/image";
-import LoginButton from "./_components/login-button";
+import LoginButton from "../_components/login-button";
 import { SignInButton } from "@clerk/nextjs";
 import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
@@ -48,7 +48,7 @@ const LoginPage = async () => {
           </SignInButton>
 
           <Button
-            className="flex items-center justify-start gap-4 bg-gray-600 p-7"
+            className="flex items-center justify-start gap-4 bg-gray-600 p-7 hover:bg-gray-700"
             asChild
           >
             <Link href="/">

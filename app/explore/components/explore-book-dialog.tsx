@@ -7,6 +7,7 @@ import {
   Dialog,
   DialogContent,
   DialogHeader,
+  DialogTitle,
   DialogTrigger,
 } from "@/app/_components/ui/dialog";
 import Image from "next/image";
@@ -14,7 +15,8 @@ import DialogBookCard from "./dialog-book-card";
 import DialogRatings from "./dialog-ratings";
 import { ScrollArea } from "@/app/_components/ui/scroll-area";
 import { useUser } from "@clerk/nextjs";
-import { useRouter } from "next/navigation";
+import { SignInButton } from "@clerk/nextjs";
+import { useState } from "react";
 
 interface ExploreBookCardProps {
   coverUrl: string;
@@ -42,11 +44,11 @@ const ExploreBookDialog = ({
   ratings,
 }: ExploreBookCardProps) => {
   const { user } = useUser();
-  const router = useRouter();
+  const [isOpen, setIsOpen] = useState(false);
 
   const handleReviewClick = () => {
     if (!user) {
-      router.push("/login");
+      setIsOpen(true);
     } else {
       console.log("Escreva sua avaliação!");
     }
@@ -99,6 +101,39 @@ const ExploreBookDialog = ({
           >
             Avaliar
           </Button>
+
+          <Dialog open={isOpen} onOpenChange={setIsOpen}>
+            <DialogContent className="right-1/2 translate-x-1/2 translate-y-[100%] border-none bg-gray-700 px-10">
+              <DialogHeader className="mb-5 mt-6">
+                <DialogTitle className="text-center text-sm font-semibold text-gray-100">
+                  Faça login para deixar sua avaliação
+                </DialogTitle>
+              </DialogHeader>
+              <SignInButton>
+                <Button className="flex items-center justify-start gap-4 bg-gray-600 p-7 hover:bg-gray-700">
+                  <Image
+                    src="/google.svg"
+                    alt="Logo do Google"
+                    width={24}
+                    height={24}
+                  />
+                  Entrar com o Google
+                </Button>
+              </SignInButton>
+
+              <SignInButton>
+                <Button className="flex items-center justify-start gap-4 bg-gray-600 p-7 hover:bg-gray-700">
+                  <Image
+                    src="/github.svg"
+                    alt="Logo do Github"
+                    width={24}
+                    height={24}
+                  />
+                  Entrar com o GitHub
+                </Button>
+              </SignInButton>
+            </DialogContent>
+          </Dialog>
         </div>
 
         <ScrollArea className="h-screen">
